@@ -1,0 +1,17 @@
+.product {
+  width: 250px;
+  padding: 15px;
+  margin: 20px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.product h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.product p {
+  font-size: 16px;
+}
