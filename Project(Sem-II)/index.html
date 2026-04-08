@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon.in: Online Shopping India</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="mainHeader">
+  <div class="header-top">
+    <a href="#" class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="logo-img"/>
+      <span class="logo-in">.in</span>
+    </a>
+    <div class="deliver-to">
+      <i class="fas fa-map-marker-alt"></i>
+      <div>
+        <span class="deliver-label">Deliver to</span>
+        <span class="deliver-location">India</span>
+      </div>
+    </div>
+    <div class="search-bar">
+      <select class="search-category">
+        <option>All</option>
+        <option>Electronics</option>
+        <option>Books</option>
+        <option>Clothing</option>
+        <option>Home & Kitchen</option>
+        <option>Beauty</option>
+        <option>Sports</option>
+        <option>Toys</option>
+      </select>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search Amazon.in" />
+      <button class="search-btn" onclick="searchProducts()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-right">
+      <div class="lang-selector">
+        <img src="https://flagcdn.com/w20/in.png" alt="India" />
+        <span>EN</span>
+        <i class="fas fa-caret-down"></i>
+      </div>
+      <div class="account-dropdown">
+        <span class="hello-text">Hello, sign in</span>
+        <span class="account-label">Account & Lists <i class="fas fa-caret-down"></i></span>
+        <div class="dropdown-menu">
+          <div class="dropdown-top">
+            <button class="signin-btn">Sign in</button>
+            <p>New customer? <a href="#">Start here</a></p>
+          </div>
+          <div class="dropdown-links">
+            <div>
+              <strong>Your Lists</strong>
+              <a href="#">Create a Wish List</a>
+              <a href="#">Wish from Any Website</a>
+              <a href="#">Baby Wish List</a>
+            </div>
+            <div>
+              <strong>Your Account</strong>
+              <a href="#">Account</a>
+              <a href="#">Orders</a>
+              <a href="#">Prime</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="returns-orders">
+        <span class="hello-text">Returns</span>
+        <span class="account-label">& Orders</span>
+      </a>
+      <a href="#" class="cart-icon" onclick="toggleCart(event)">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+        <span class="cart-text">Cart</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SECONDARY NAV ===== -->
+<nav class="secondary-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-link all-link"><i class="fas fa-bars"></i> All</a>
+    <a href="#" class="nav-link">Today's Deals</a>
+    <a href="#" class="nav-link">Customer Service</a>
+    <a href="#" class="nav-link">Registry</a>
+    <a href="#" class="nav-link">Gift Cards</a>
+    <a href="#" class="nav-link">Sell</a>
+    <a href="#" class="nav-link">Prime</a>
+    <a href="#" class="nav-link">New Releases</a>
+    <a href="#" class="nav-link">Books</a>
+    <a href="#" class="nav-link">Fashion</a>
+  </div>
+</nav>
+
+<!-- ===== CART PANEL ===== -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>Shopping Cart</h2>
+    <button onclick="toggleCart(event)" class="close-cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <span id="cartTotal">₹0</span></div>
+    <button class="proceed-btn">Proceed to Checkout</button>
+  </div>
+</div>
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart(event)"></div>
+
+<!-- ===== HERO CAROUSEL (full image) ===== -->
+<section class="hero-section">
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&q=85" alt="Fashion Sale" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">Limited Time</span>
+          <h1>Starting ₹199</h1>
+          <h2>Deals on Summer Fashion</h2>
+          <button class="slide-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=85" alt="Home Appliances" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">Mega Sale</span>
+          <h1>Up to 55% Off</h1>
+          <h2>Home Appliances Sale</h2>
+          <button class="slide-btn">Explore Deals <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400&q=85" alt="Electronics" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">Best Deals</span>
+          <h1>Up to 60% Off</h1>
+          <h2>Electronics & Gadgets</h2>
+          <button class="slide-btn">Discover More <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=85" alt="Home Essentials" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">Daily Deals</span>
+          <h1>Starting ₹49</h1>
+          <h2>Home Essentials Deals</h2>
+          <button class="slide-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1400&q=85" alt="Headphones" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">Top Pick</span>
+          <h1>Up to 75% Off</h1>
+          <h2>Headphones & Earbuds</h2>
+          <button class="slide-btn">Shop Audio <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&q=85" alt="Sports" class="slide-bg-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-tag">New Arrivals</span>
+          <h1>Up to 50% Off</h1>
+          <h2>Sports & Footwear</h2>
+          <button class="slide-btn">Buy Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-btn prev" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="carousel-btn next" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- ===== CONTINUOUSLY MOVING IMAGE STRIP ===== -->
+<div class="img-strip-wrapper">
+  <div class="img-strip" id="imgStrip">
+    <!-- duplicated inside JS for infinite loop -->
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="main-content">
+
+  <!-- PROMO GRID with images -->
+  <section class="promo-grid">
+
+    <div class="promo-card">
+      <h3>Appliances for your home</h3>
+      <p class="promo-sub">Up to 55% off</p>
+      <div class="promo-images">
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=200&q=75" alt="AC" loading="lazy"/>
+          <span>AC</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=200&q=75" alt="Fridge" loading="lazy"/>
+          <span>Fridge</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f4834d?w=200&q=75" alt="TV" loading="lazy"/>
+          <span>TV</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=200&q=75" alt="Washer" loading="lazy"/>
+          <span>Washer</span>
+        </div>
+      </div>
+      <a href="#" class="see-more">See more</a>
+    </div>
+
+    <div class="promo-card">
+      <h3>Revamp your home in style</h3>
+      <p class="promo-sub">Up to 50% off</p>
+      <div class="promo-images">
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=75" alt="Sofa" loading="lazy"/>
+          <span>Sofas</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=75" alt="Bed" loading="lazy"/>
+          <span>Beds</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1513506003901-1e6a35c44c16?w=200&q=75" alt="Lamp" loading="lazy"/>
+          <span>Lamps</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=75" alt="Decor" loading="lazy"/>
+          <span>Decor</span>
+        </div>
+      </div>
+      <a href="#furniture" class="see-more">Explore all</a>
+    </div>
+
+    <div class="promo-card">
+      <h3>Starting ₹49 | Home essentials</h3>
+      <p class="promo-sub">Daily use items</p>
+      <div class="promo-images">
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?w=200&q=75" alt="Kitchen" loading="lazy"/>
+          <span>Kitchen</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&q=75" alt="Cleaning" loading="lazy"/>
+          <span>Cleaning</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?w=200&q=75" alt="Storage" loading="lazy"/>
+          <span>Storage</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1559181567-c3190bba5559?w=200&q=75" alt="Dining" loading="lazy"/>
+          <span>Dining</span>
+        </div>
+      </div>
+      <a href="#" class="see-more">Shop now</a>
+    </div>
+
+    <div class="promo-card">
+      <h3>Starting ₹149 | Health & Wellness</h3>
+      <p class="promo-sub">Stay fit & healthy</p>
+      <div class="promo-images">
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&q=75" alt="Medicine" loading="lazy"/>
+          <span>Medicines</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&q=75" alt="Fitness" loading="lazy"/>
+          <span>Fitness</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=200&q=75" alt="Wellness" loading="lazy"/>
+          <span>Wellness</span>
+        </div>
+        <div class="promo-img-item">
+          <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=200&q=75" alt="Nutrition" loading="lazy"/>
+          <span>Nutrition</span>
+        </div>
+      </div>
+      <a href="#" class="see-more">Shop all</a>
+    </div>
+
+  </section>
+
+  <!-- HEADPHONES SECTION -->
+  <section class="product-section" id="headphones">
+    <div class="section-header">
+      <h2>Up to 40% off | Headphones and earbuds</h2>
+      <a href="#" class="see-all">See all offers</a>
+    </div>
+    <div class="products-grid" id="headphonesGrid"></div>
+  </section>
+
+  <!-- KITCHEN SECTION -->
+  <section class="product-section" id="kitchen">
+    <div class="section-header">
+      <h2>Up to 60% off | Cookware, Kitchen tools & more</h2>
+      <a href="#" class="see-all">See all</a>
+    </div>
+    <div class="products-grid" id="kitchenGrid"></div>
+  </section>
+
+  <!-- TWO COLUMN PROMO -->
+  <div class="two-col-promo">
+    <div class="col-promo-card">
+      <h3>Best Sellers in Beauty</h3>
+      <div class="col-promo-grid" id="beautyGrid"></div>
+      <a href="#" class="see-more">See all offers</a>
+    </div>
+    <div class="col-promo-card">
+      <h3>Best Sellers in Home & Kitchen</h3>
+      <div class="col-promo-grid" id="homeGrid"></div>
+      <a href="#" class="see-more">See all offers</a>
+    </div>
+  </div>
+
+  <!-- TRENDING SECTION -->
+  <section class="product-section" id="trending">
+    <div class="section-header">
+      <h2>Min.35% off | Trending & must-haves | Small Businesses</h2>
+      <a href="#" class="see-all">See more</a>
+    </div>
+    <div class="products-grid" id="trendingGrid"></div>
+  </section>
+
+  <!-- FURNITURE SECTION -->
+  <section class="product-section" id="furniture">
+    <div class="section-header">
+      <h2>Up to 40% Off | Deals on Trendy Furniture</h2>
+      <a href="#" class="see-all">See all offers</a>
+    </div>
+    <div class="products-grid" id="furnitureGrid"></div>
+  </section>
+
+  <!-- CLOTHING SECTION -->
+  <section class="product-section" id="clothing">
+    <div class="section-header">
+      <h2>Best Sellers in Clothing & Accessories</h2>
+      <a href="#" class="see-all">See all</a>
+    </div>
+    <div class="products-grid" id="clothingGrid"></div>
+  </section>
+
+  <!-- SEARCH RESULTS -->
+  <section class="product-section" id="searchResults" style="display:none;">
+    <div class="section-header">
+      <h2 id="searchTitle">Search Results</h2>
+      <button onclick="clearSearch()" class="see-all">Clear Search</button>
+    </div>
+    <div class="products-grid" id="searchGrid"></div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top</a>
+  <div class="footer-main">
+    <div class="footer-col">
+      <h4>Get to Know Us</h4>
+      <a href="#">About Amazon</a>
+      <a href="#">Careers</a>
+      <a href="#">Press Releases</a>
+      <a href="#">Amazon Science</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect with Us</h4>
+      <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+    <div class="footer-col">
+      <h4>Make Money with Us</h4>
+      <a href="#">Sell on Amazon</a>
+      <a href="#">Amazon Associates</a>
+      <a href="#">Fulfilment by Amazon</a>
+      <a href="#">Advertise Your Products</a>
+    </div>
+    <div class="footer-col">
+      <h4>Let Us Help You</h4>
+      <a href="#">Your Account</a>
+      <a href="#">Returns Centre</a>
+      <a href="#">100% Purchase Protection</a>
+      <a href="#">Amazon App Download</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="footer-logo"/>
+    <div class="footer-locales">
+      <a href="#"><i class="fas fa-globe"></i> English</a>
+      <a href="#"><i class="fas fa-rupee-sign"></i> INR - Indian Rupee</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> India</a>
+    </div>
+    <p class="copyright">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
